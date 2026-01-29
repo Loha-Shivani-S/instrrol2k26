@@ -1,0 +1,356 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap');
+
+/* INSTRROL 2K26 Design System - Deep Navy & Gold Theme */
+
+@layer base {
+  :root {
+    /* Deep Navy Theme - Adjusted to match banner */
+    --background: 215 35% 12%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 45% 10%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 45% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Primary - Royal Gold */
+    --primary: 38 92% 50%;
+    --primary-foreground: 222 47% 8%;
+
+    /* Secondary - Deep Navy */
+    --secondary: 222 40% 14%;
+    --secondary-foreground: 210 40% 98%;
+
+    /* Muted - Dark Steel Blue */
+    --muted: 222 35% 12%;
+    --muted-foreground: 215 20% 55%;
+
+    /* Accent - Warm Amber */
+    --accent: 32 95% 55%;
+    --accent-foreground: 222 47% 8%;
+
+    /* Success - Emerald */
+    --success: 160 70% 40%;
+    --success-foreground: 222 47% 8%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 30% 18%;
+    --input: 222 30% 18%;
+    --ring: 38 92% 50%;
+
+    --radius: 0.5rem;
+
+    /* Custom Properties - Regal Theme */
+    --gradient-gold: linear-gradient(135deg, hsl(38 92% 55%), hsl(28 90% 45%), hsl(38 92% 55%));
+    --gradient-gold-text: linear-gradient(135deg, hsl(45 100% 65%), hsl(38 92% 50%), hsl(28 85% 45%));
+    --gradient-navy: linear-gradient(180deg, hsl(222 47% 8%), hsl(222 45% 12%));
+    --gradient-card: linear-gradient(145deg, hsl(222 45% 12%), hsl(222 45% 8%));
+    --gradient-hero: radial-gradient(ellipse at 50% 0%, hsl(38 92% 50% / 0.08), transparent 60%);
+    --gradient-circuit: radial-gradient(ellipse at 30% 20%, hsl(210 100% 40% / 0.05), transparent 40%),
+                        radial-gradient(ellipse at 70% 80%, hsl(38 92% 50% / 0.04), transparent 40%);
+    
+    --shadow-gold: 0 0 30px hsl(38 92% 50% / 0.35);
+    --shadow-gold-soft: 0 0 20px hsl(38 92% 50% / 0.2);
+    --shadow-glow: 0 0 30px hsl(38 92% 50% / 0.35);
+    --shadow-glow-accent: 0 0 30px hsl(32 95% 55% / 0.35);
+    --shadow-glow-success: 0 0 20px hsl(160 70% 40% / 0.35);
+    --shadow-card: 0 8px 32px hsl(222 47% 4% / 0.6);
+    
+    /* Sidebar */
+    --sidebar-background: 222 45% 10%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 38 92% 50%;
+    --sidebar-primary-foreground: 222 47% 8%;
+    --sidebar-accent: 222 40% 14%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 222 30% 18%;
+    --sidebar-ring: 38 92% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel', serif;
+  }
+}
+
+@layer components {
+  /* Gold Gradient Text */
+  .text-gradient-gold {
+    background: var(--gradient-gold-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Hero Button Variants */
+  .btn-hero-primary {
+    @apply relative overflow-hidden px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300;
+    background: var(--gradient-gold);
+    color: hsl(var(--primary-foreground));
+    box-shadow: var(--shadow-gold);
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.05em;
+  }
+  
+  .btn-hero-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 50px hsl(38 92% 50% / 0.5);
+  }
+
+  .btn-hero-secondary {
+    @apply relative px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 border-2;
+    border-color: hsl(var(--primary));
+    color: hsl(var(--primary));
+    background: transparent;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.05em;
+  }
+  
+  .btn-hero-secondary:hover {
+    background: hsl(var(--primary) / 0.1);
+    box-shadow: var(--shadow-gold);
+  }
+
+  /* Card Styles */
+  .event-card {
+    @apply relative rounded-xl p-6 transition-all duration-500;
+    background: var(--gradient-card);
+    border: 1px solid hsl(var(--border));
+  }
+  
+  .event-card:hover {
+    transform: translateY(-8px);
+    border-color: hsl(var(--primary));
+    box-shadow: var(--shadow-gold-soft);
+  }
+
+  /* Timeline Styles */
+  .timeline-dot {
+    @apply w-4 h-4 rounded-full relative z-10;
+    background: var(--gradient-gold);
+    box-shadow: var(--shadow-gold);
+  }
+
+  .timeline-line {
+    @apply absolute w-0.5 h-full left-1/2 -translate-x-1/2;
+    background: linear-gradient(180deg, hsl(var(--primary)), hsl(var(--primary) / 0.3));
+  }
+
+  /* Glow Text */
+  .text-glow {
+    text-shadow: 0 0 40px hsl(38 92% 50% / 0.5);
+  }
+
+  .text-glow-accent {
+    text-shadow: 0 0 40px hsl(32 95% 55% / 0.5);
+  }
+
+  .text-glow-success {
+    text-shadow: 0 0 30px hsl(160 70% 40% / 0.5);
+  }
+
+  /* Circuit Pattern Background */
+  .circuit-pattern {
+    background-image: 
+      linear-gradient(hsl(210 100% 40% / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(210 100% 40% / 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Factory/Tech Pattern */
+  .factory-pattern {
+    background-image:
+      radial-gradient(circle at 20% 30%, hsl(210 100% 50% / 0.04) 0px, transparent 50%),
+      radial-gradient(circle at 80% 70%, hsl(38 92% 50% / 0.03) 0px, transparent 50%),
+      linear-gradient(hsl(210 100% 40% / 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(210 100% 40% / 0.02) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 60px 60px, 60px 60px;
+  }
+
+  /* Machinery Background Pattern */
+  .machinery-pattern {
+    background-image:
+      radial-gradient(circle at 15% 85%, hsl(210 80% 30% / 0.15) 0px, transparent 25%),
+      radial-gradient(circle at 85% 15%, hsl(210 80% 30% / 0.1) 0px, transparent 25%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e3a5f' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* Glass Effect */
+  .glass {
+    @apply backdrop-blur-md;
+    background: hsl(var(--card) / 0.85);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  /* Industrial Panel */
+  .industrial-panel {
+    @apply relative rounded-lg p-6;
+    background: var(--gradient-card);
+    border: 1px solid hsl(var(--border));
+    box-shadow: inset 0 1px 0 hsl(var(--foreground) / 0.05);
+  }
+
+  /* Status Indicator */
+  .status-online {
+    @apply w-2 h-2 rounded-full;
+    background: hsl(var(--success));
+    box-shadow: var(--shadow-glow-success);
+    animation: pulse-status 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-status {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  /* Form Input Styles */
+  .form-input {
+    @apply w-full px-4 py-3 rounded-lg transition-all duration-300;
+    background: hsl(var(--muted));
+    border: 1px solid hsl(var(--border));
+    color: hsl(var(--foreground));
+  }
+  
+  .form-input:focus {
+    outline: none;
+    border-color: hsl(var(--primary));
+    box-shadow: 0 0 0 3px hsl(var(--primary) / 0.2);
+  }
+
+  .form-input::placeholder {
+    color: hsl(var(--muted-foreground));
+  }
+
+  /* Section Title */
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold mb-4;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.02em;
+  }
+
+  .section-subtitle {
+    @apply text-lg max-w-2xl mx-auto;
+    color: hsl(var(--muted-foreground));
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+  }
+
+  /* Decorative Italic Text (like "Proudly presents") */
+  .text-decorative {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  /* Ornate Border */
+  .ornate-border {
+    border: 2px solid hsl(var(--primary) / 0.3);
+    position: relative;
+  }
+
+  .ornate-border::before,
+  .ornate-border::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid hsl(var(--primary));
+  }
+
+  .ornate-border::before {
+    top: -5px;
+    left: -5px;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .ornate-border::after {
+    bottom: -5px;
+    right: -5px;
+    border-left: none;
+    border-top: none;
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.6s ease-out forwards;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(38 92% 50% / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(38 92% 50% / 0.6);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
