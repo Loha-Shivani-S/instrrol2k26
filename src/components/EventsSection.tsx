@@ -12,48 +12,54 @@ import {
   Users,
   Clock,
   ArrowRight,
-  Image
+  Image,
+  GraduationCap
 } from "lucide-react";
 
 const technicalEvents = [
   {
     icon: Eye,
     name: "Visionary Boards",
-    description: "Transform your ideas into visual masterpieces. Create compelling vision boards that tell a story.",
-    teamSize: "2-3 members",
+    description: "VISIONARY BOARDS is where innovation meets visual storytelling. Participants convert complex technical ideas into crisp, compelling posters that communicate clarity, creativity, and confidence—all at a glance. If you can turn your research into a story that anyone can understand in under a minute, this is your stage. Think smart. Design sharp. Present with impact.",
+    teamSize: "Individual/3-4 members",
     duration: "2 hours",
+    eligibility: "2nd to 4th years only",
     registerLink: "https://docs.google.com/forms/d/e/1FAIpQLSds4FbknZ4-HLQuAwbTEXzeMswYumFo3pgkQ6z1CMUW-h728Q/viewform",
   },
   {
     icon: Phone,
     name: "Algorithm Telephone",
-    description: "A fun twist on communication! Pass algorithms through the chain without losing the logic.",
-    teamSize: "4 members",
-    duration: "1.5 hours",
+    description: "ALGORITHM TELEPHONE is where logic meets teamwork and communication. Participants receive problems via a simulated telephone call, craft algorithms, and hand them off for coding, ensuring clarity and accuracy at every step. Listen carefully. Plan precisely. Code efficiently. Make every step count.",
+    teamSize: "2 members",
+    duration: "2 hours",
+    eligibility: "2nd to 4th years only",
     registerLink: "https://docs.google.com/forms/d/e/1FAIpQLSdiHFRqIdDaXs3dhDlwEK_3o_C9lf3896t77pKk2eGG__1SFQ/viewform?usp=send_form",
   },
   {
     icon: Palette,
     name: "Idea Canvas",
-    description: "Sketch your innovative solutions on a blank canvas. Creativity meets engineering!",
-    teamSize: "2 members",
-    duration: "1 hour",
+    description: "Template will be provided for presentation. 3 minutes to present, followed by 2 minutes of Q&A. Theme Open to all participants.",
+    teamSize: "Individual/3 members",
+    duration: "2 hours",
+    eligibility: "1st years only",
     registerLink: "https://docs.google.com/forms/d/e/1FAIpQLSeg7cK_lKx7I719WfvWI-m7A_CR9yqeboU6Ui-ttKHqcZZNBw/viewform",
   },
   {
     icon: Zap,
     name: "Think On Demand",
-    description: "Quick-fire round testing your ability to think on your feet under pressure.",
-    teamSize: "Individual",
+    description: "1 minutes for member- 1 and member 1 want to analyse the picture and discuss it to team member and make a prompt image with AI it should be match with provided picture",
+    teamSize: "2 members",
     duration: "30 mins",
+    eligibility: "2nd to 4th years only",
     registerLink: "https://docs.google.com/forms/d/e/1FAIpQLSdkVSmPjrSBhcxHDxSpe_2yASoLIGegJr0uvN7mg1Xqkoaq2A/viewform?usp=dialog",
   },
   {
     icon: RefreshCw,
     name: "Zero State",
-    description: "Start from scratch and build your way up. A technical challenge like no other.",
-    teamSize: "2 members",
+    description: "ZERO STATE challenges participants to operate at the edge of logic and teamwork. With limited time, restricted communication, and divided responsibilities, teams must decode, design, search, and assemble a circuit from scratch. Every clue matters. Every connection counts.",
+    teamSize: "Individual/3-4 members",
     duration: "1 hour",
+    eligibility: "2nd to 4th years only",
     registerLink: "https://docs.google.com/forms/d/e/1FAIpQLSfpf3X64xyDh0FSslHYx_yB33cOk1z5WMsDCBQMyEH7AYna4w/viewform?usp=send_form",
   },
 ];
@@ -62,41 +68,46 @@ const creativeEvents = [
   {
     icon: BrainIcon,
     name: "Brain Buzz",
-    description: "Test your knowledge in this electrifying quiz spanning electronics and instrumentation.",
-    teamSize: "2-3 members",
+    description: "Spot what doesn’t belong in the pattern. Connect the clues logically from start to finish. Think fast, reason smart, and trust your instincts.",
+    teamSize: "3-4 members",
     duration: "30 mins",
+    eligibility: "2nd to 4th years + 1st years (Idea Canvas participants)",
     registerLink: "https://docs.google.com/forms/d/e/1FAIpQLSfhc8l7YQKHEIadqc0ty8iWV6cQyi5sobpnISndDA8K4SZ6kg/viewform?usp=send_form",
   },
   {
     icon: Megaphone,
     name: "Pitch the Product",
-    description: "Present your product idea like a pro. Convince the judges with your pitch!",
-    teamSize: "2-4 members",
+    description: "Pitch the Product is an individual-based fun and creative competition. It encourages quick thinking, creativity, and confident communication. The event provides a platform to market ideas like a true entrepreneur.",
+    teamSize: "Individual",
     duration: "30 mins",
+    eligibility: "2nd to 4th years + 1st years (Idea Canvas participants)",
     registerLink: "https://docs.google.com/forms/d/e/1FAIpQLSfPWJKTeiw-IJpny840rWZNgzPL8IAcG8V4t1LbTVGqEnD91w/viewform",
   },
   {
     icon: Wrench,
     name: "Fix It / Fake It",
-    description: "Debug the code or fake your way through. Can you tell the difference?",
+    description: "A rapid technical game where wrong statements are thrown at you and your task is to detect the mistake and correct it instantly. Sharpen your fundamentals, react fast, and enjoy learning through fun challenges.",
     teamSize: "2 members",
     duration: "30 mins",
+    eligibility: "2nd to 4th years + 1st years (Idea Canvas participants)",
     registerLink: "https://docs.google.com/forms/d/e/1FAIpQLSfkg6UQuL4JljyjD2_zx9j5Ak6kIOI3xi6KNhRjVW0cxVj8ZA/viewform",
   },
   {
     icon: Skull,
     name: "Mindflayer",
-    description: "The ultimate mental challenge. Only the sharpest minds survive this finale.",
-    teamSize: "Individual",
+    description: "MindFlayer pushes teams into high-pressure scenarios where thinking fast is not optional—it’s survival. Decode, adapt, and switch your stance in seconds to outplay the competition. Think fast. Switch smart. Let your mind flare.",
+    teamSize: "2 members",
     duration: "30 mins",
+    eligibility: "2nd to 4th years + 1st years (Idea Canvas participants)",
     registerLink: "https://docs.google.com/forms/d/e/1FAIpQLSfFzUMcOsocMV7dGaio_j6V-t_rzeu248zMAxt_8S0O_vff6g/viewform?usp=send_form",
   },
   {
     icon: Image,
     name: "Ad & Meme",
-    description: "Unleash your creativity! Create viral memes and catchy advertisements that stand out.",
-    teamSize: "2 members",
-    duration: "1 hour",
+    description: "AD & MEME pushes you to blend technical knowledge with creativity, turning serious concepts into visually striking ads or smart memes that speak instantly. If your idea can make people think, smile, and understand—all at once—this is your moment.",
+    teamSize: "Individual",
+    duration: "15 mins",
+    eligibility: "2nd to 4th years + 1st years (Idea Canvas participants)",
     registerLink: "https://docs.google.com/forms/d/e/1FAIpQLSdUCLHgpDnFYJM5JTyYhLTRoPYx6J2lyF6uQb07M0wrUB6PZg/viewform?usp=send_form",
   },
 ];
@@ -110,6 +121,7 @@ type EventItem = {
   description: string;
   teamSize: string;
   duration: string;
+  eligibility: string;
   registerLink?: string;
 };
 
@@ -119,7 +131,7 @@ const EventCard = ({ event, index }: { event: EventItem; index: number }) => {
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: false, amount: 0.1 }}
       transition={{ delay: index * 0.05 }}
     >
       <motion.div
@@ -141,14 +153,20 @@ const EventCard = ({ event, index }: { event: EventItem; index: number }) => {
           {event.description}
         </p>
 
-        <div className="flex items-center gap-4 mb-4 text-sm">
-          <div className="flex items-center gap-1.5 text-muted-foreground">
-            <Users size={14} className="text-primary" />
-            <span>{event.teamSize}</span>
+        <div className="mb-4 flex flex-col gap-2 text-sm">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-1.5 text-muted-foreground">
+              <Users size={14} className="text-primary" />
+              <span>{event.teamSize}</span>
+            </div>
+            <div className="flex items-center gap-1.5 text-muted-foreground">
+              <Clock size={14} className="text-accent" />
+              <span>{event.duration}</span>
+            </div>
           </div>
-          <div className="flex items-center gap-1.5 text-muted-foreground">
-            <Clock size={14} className="text-accent" />
-            <span>{event.duration}</span>
+          <div className="flex items-start gap-1.5 text-muted-foreground">
+            <GraduationCap size={14} className="text-primary mt-0.5 flex-shrink-0" />
+            <span className="leading-tight">{event.eligibility}</span>
           </div>
         </div>
 
@@ -174,7 +192,7 @@ const EventsSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
@@ -190,7 +208,7 @@ const EventsSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
           className="mb-12"
         >
           <h3 className="font-decorative text-2xl italic text-primary mb-8 text-center">
@@ -207,7 +225,7 @@ const EventsSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
         >
           <h3 className="font-decorative text-2xl italic text-accent mb-8 text-center">
             Creative Confluence
@@ -223,7 +241,7 @@ const EventsSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
           className="mt-12 text-center"
         >
           <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent/10 border border-accent/30 text-accent font-display tracking-wide">

@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import PLCGame from "./pages/PLCGame";
 import SmartFactory from "./pages/SmartFactory";
 import Members from "./pages/Members";
+import Coordinators from "./pages/Coordinators";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/plc-game" element={<PLCGame />} />
           <Route path="/smart-factory" element={<SmartFactory />} />
           <Route path="/members" element={<Members />} />
+          <Route path="/coordinators" element={<Coordinators />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

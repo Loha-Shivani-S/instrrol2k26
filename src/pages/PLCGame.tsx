@@ -1,12 +1,12 @@
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  ArrowLeft, 
-  Play, 
-  RotateCcw, 
-  Zap, 
-  Power, 
-  AlertTriangle, 
+import {
+  ArrowLeft,
+  Play,
+  RotateCcw,
+  Zap,
+  Power,
+  AlertTriangle,
   CheckCircle2,
   XCircle,
   Lightbulb,
@@ -38,6 +38,7 @@ interface Level {
   description: string;
   objective: string;
   targetOutput: boolean[];
+  testCases?: { inputs: boolean[]; expected: boolean }[];
   hints: string[];
   availableBlocks: LogicBlock[];
   requiredBlocks: number;
@@ -56,7 +57,11 @@ const LEVELS: Level[] = [
     title: "Simple Start-Stop",
     description: "Create a basic motor control circuit",
     objective: "Connect a Start button (NO) to the Motor Coil to turn it ON",
-    targetOutput: [true],
+    targetOutput: [true], // Deprecated, kept for type compatibility if needed, but we use testCases now
+    testCases: [
+      { inputs: [false, false], expected: false },
+      { inputs: [true, false], expected: true }
+    ],
     hints: ["Drag the NO contact first", "Connect the COIL at the end"],
     availableBlocks: [BLOCK_PALETTE[0], BLOCK_PALETTE[2]],
     requiredBlocks: 2,
@@ -67,6 +72,12 @@ const LEVELS: Level[] = [
     description: "Add a safety switch to the motor circuit",
     objective: "Motor runs only when Start is pressed AND Safety switch is engaged",
     targetOutput: [true, true],
+    testCases: [
+      { inputs: [false, false], expected: false },
+      { inputs: [true, false], expected: false },
+      { inputs: [false, true], expected: false },
+      { inputs: [true, true], expected: true }
+    ],
     hints: ["Use two NO contacts in series", "Both must be ON for output"],
     availableBlocks: [BLOCK_PALETTE[0], BLOCK_PALETTE[0], BLOCK_PALETTE[2]],
     requiredBlocks: 3,
@@ -77,6 +88,11 @@ const LEVELS: Level[] = [
     description: "Implement an emergency stop function",
     objective: "Motor runs when Start is ON, but stops immediately when E-Stop is pressed",
     targetOutput: [true, false],
+    testCases: [
+      { inputs: [false, false], expected: false },
+      { inputs: [true, false], expected: true }, // Start ON, E-Stop OFF -> RUN
+      { inputs: [true, true], expected: false }  // Start ON, E-Stop ON -> STOP
+    ],
     hints: ["NC contact breaks the circuit when activated", "E-Stop should use NC contact"],
     availableBlocks: [BLOCK_PALETTE[0], BLOCK_PALETTE[1], BLOCK_PALETTE[2]],
     requiredBlocks: 3,
@@ -87,6 +103,12 @@ const LEVELS: Level[] = [
     description: "Create a two-handed safety control system",
     objective: "Motor runs only when BOTH buttons are pressed simultaneously (safety feature)",
     targetOutput: [true, true],
+    testCases: [
+      { inputs: [false, false], expected: false },
+      { inputs: [true, false], expected: false },
+      { inputs: [false, true], expected: false },
+      { inputs: [true, true], expected: true }
+    ],
     hints: ["Both hands must be on buttons for safety", "Use two NO contacts in series"],
     availableBlocks: [BLOCK_PALETTE[0], BLOCK_PALETTE[0], BLOCK_PALETTE[2]],
     requiredBlocks: 3,
@@ -97,6 +119,11 @@ const LEVELS: Level[] = [
     description: "Stop conveyor when jam is detected",
     objective: "Conveyor runs normally but stops when jam sensor (NC) is triggered",
     targetOutput: [true, false],
+    testCases: [
+      { inputs: [false, false], expected: false },
+      { inputs: [true, false], expected: true },  // System ON, No Jam -> RUN
+      { inputs: [true, true], expected: false }   // System ON, Jam Detected -> STOP
+    ],
     hints: ["NC contact opens when jam is detected", "Think about fail-safe design"],
     availableBlocks: [BLOCK_PALETTE[0], BLOCK_PALETTE[1], BLOCK_PALETTE[2]],
     requiredBlocks: 3,
@@ -107,6 +134,40 @@ const LEVELS: Level[] = [
     description: "Implement machine guard safety interlock",
     objective: "Machine runs only when Start is ON AND Guard Door is closed (NC opens when door opens)",
     targetOutput: [true, true],
+    testCases: [
+      { inputs: [false, false], expected: false },
+      { inputs: [true, false], expected: true }, // Start ON, Door Closed (Sensor 0) -> RUN (Wait, if door closed means switch is pressed or not? Usually Guard Door Switch: Closed = 1. If logic says NC opens when door opens... let's assume standard Safety: Gate Closed = 1. Gate Open = 0.
+      // RE-READ OBJECTIVE: "Guard Door is closed (NC opens when door opens)"
+      // This usually implies a physical switch held closed by the door.
+      // If we use NC contact:
+      // Door Closed (Switch Pressed=1) -> NC Open -> Circuit Broken. This checks for Door OPEN.
+      // We want to run when Door CLOSED.
+      // If objective says "NC opens when door opens", it might mean the physical switch is NC?
+      // Let's simplify for game: We want Logic 1 (Run) when Start=1 AND Door=1.
+      // If we use NO contact for Door: 1 -> Closed.
+      // If we use NC contact for Door: 0 -> Closed.
+      // Standard simplified logic: Safety = Normal Operation when logical 0? Or 1?
+      // Let's stick to the Truth Table pattern:
+      // Input 1: Start. Input 2: Door Sensor.
+      // Case 1: Start=1, Door=1 (Closed) -> RUN.
+      // Case 2: Start=1, Door=0 (Open) -> STOP.
+      // To get this with Series Logic:
+      // NO (Start) + NO (Door). (1 & 1 = 1).
+      // If the game asks for NC... "NC opens when door opens".
+      // This implies the sensor is physically NC. When door is closed, sensor is Actuated (Open)? No that breaks it.
+      // Let's assume usage of NC in logic means: "Passes when 0".
+      // So we want: Start=1, Door=0 -> RUN. (If Door=0 means closed).
+      // Let's standardize on: 1 = Active/Pressed/Triggered.
+      // So E-Stop (Normally Closed function): Pressing it (1) stops machine. (1 -> 0). Use NC block.
+      // Jam (Normally Closed function): Detecting Jam (1) stops machine. (1 -> 0). Use NC block.
+      // Guard Door: Opening Door (1?) stops machine.
+      // Let's assume Input corresponds to "Door Open Alarm".
+      // 0 = Door Closed (Safe). 1 = Door Open (Unsafe).
+      // We want RUN when Start=1 AND Door=0.
+      // Block 1: NO (Start). Block 2: NC (Door Open Sensor).
+      { inputs: [true, false], expected: true }, // Start=1, DoorOpen=0 -> RUN
+      { inputs: [true, true], expected: false }  // Start=1, DoorOpen=1 -> STOP
+    ],
     hints: ["Guard door uses NC - closed door = signal passes", "Consider what happens when door opens"],
     availableBlocks: [BLOCK_PALETTE[0], BLOCK_PALETTE[1], BLOCK_PALETTE[2]],
     requiredBlocks: 3,
@@ -117,18 +178,29 @@ const LEVELS: Level[] = [
     description: "Create a 3-stage startup sequence",
     objective: "All three stages must be enabled for the system to start",
     targetOutput: [true, true, true],
+    testCases: [
+      { inputs: [false, false, false], expected: false },
+      { inputs: [true, true, false], expected: false },
+      { inputs: [true, true, true], expected: true }
+    ],
     hints: ["Series connection of multiple contacts", "All conditions must be true"],
     availableBlocks: [BLOCK_PALETTE[0], BLOCK_PALETTE[0], BLOCK_PALETTE[0], BLOCK_PALETTE[2]],
     requiredBlocks: 4,
   },
   {
     id: 8,
-    title: "Override with Safety",
-    description: "Normal operation with safety override",
-    objective: "System runs when Start is ON, NC safety is engaged, but includes manual override",
-    targetOutput: [true, true],
-    hints: ["Combine NO and NC contacts", "Think about what each contact does"],
-    availableBlocks: [BLOCK_PALETTE[0], BLOCK_PALETTE[1], BLOCK_PALETTE[0], BLOCK_PALETTE[2]],
+    title: "Complete Safety Series",
+    description: "Implement a comprehensive safety system",
+    objective: "Machine runs when E-Stop is released (Off), Light Curtain is clear (Off), and Gate is closed (On)",
+    targetOutput: [true, true, true],
+    testCases: [
+      { inputs: [false, false, true], expected: true }, // E-Stop(0), LC(0), Gate(1) -> RUN
+      { inputs: [true, false, true], expected: false }, // E-Stop Pressed -> STOP
+      { inputs: [false, true, true], expected: false }, // Light Curtain Broken -> STOP
+      { inputs: [false, false, false], expected: false } // Gate Open -> STOP
+    ],
+    hints: ["Think about which conditions need to be On vs Off", "NC checks for Off, NO checks for On"],
+    availableBlocks: [BLOCK_PALETTE[1], BLOCK_PALETTE[1], BLOCK_PALETTE[0], BLOCK_PALETTE[2]],
     requiredBlocks: 4,
   },
 ];
@@ -172,8 +244,8 @@ const BlockIcon = ({ type }: { type: BlockType }) => {
 const PLCGame = () => {
   const [currentLevel, setCurrentLevel] = useState(0);
   const [placedBlocks, setPlacedBlocks] = useState<PlacedBlock[]>([]);
-  const [isRunning, setIsRunning] = useState(false);
-  const [inputStates, setInputStates] = useState<boolean[]>([true, true]);
+  const [simulationStatus, setSimulationStatus] = useState<"idle" | "verifying" | "success" | "error">("idle");
+  const [inputStates, setInputStates] = useState<boolean[]>([false, false, false]); // Default to OFF
   const [outputState, setOutputState] = useState(false);
   const [score, setScore] = useState(0);
   const [showHint, setShowHint] = useState(false);
@@ -182,37 +254,83 @@ const PLCGame = () => {
 
   const level = LEVELS[currentLevel];
 
-  const evaluateLogic = useCallback(() => {
-    if (placedBlocks.length === 0) return false;
-    
+  // Pure logic evaluation function
+  const evaluateCircuit = (blocks: PlacedBlock[], inputs: boolean[]) => {
+    if (blocks.length === 0) return false;
+
     let signal = true;
-    const sortedBlocks = [...placedBlocks].sort((a, b) => a.position - b.position);
-    
-    sortedBlocks.forEach((placed, index) => {
+    const sortedBlocks = [...blocks].sort((a, b) => a.position - b.position);
+
+    // Logic: Series circuit. 
+    // Block at Position 0 connects to Input 0.
+    // Block at Position 1 connects to Input 1.
+    // ...
+    // Last block (COIL) does not consume an input usually, but in this 
+    // simplified drag-drop, let's treat COIL as just a terminator that doesn't affect signal 
+    // UNLESS it's misplaced.
+
+    // Filter out COILs for logic check, or treat them as pass-always?
+    // Let's assume the Coil must be at the end.
+
+    let inputIndex = 0;
+
+    for (const placed of sortedBlocks) {
       if (placed.block.type === "NO") {
-        signal = signal && inputStates[Math.min(index, inputStates.length - 1)];
+        signal = signal && (inputs[inputIndex] === true);
+        inputIndex++;
       } else if (placed.block.type === "NC") {
-        signal = signal && !inputStates[Math.min(index, inputStates.length - 1)];
+        signal = signal && (inputs[inputIndex] === false);
+        inputIndex++;
       }
-    });
-    
+      // COIL and TIMER don't check inputs in this simple series model
+      // They just exist.
+    }
+
     return signal;
+  };
+
+  const evaluateLogic = useCallback(() => {
+    return evaluateCircuit(placedBlocks, inputStates);
   }, [placedBlocks, inputStates]);
 
   const runSimulation = () => {
-    setIsRunning(true);
-    const result = evaluateLogic();
-    setOutputState(result);
-    
-    // Check if level is complete
+    setSimulationStatus("verifying");
+
+    // Visual update for current state
+    const currentResult = evaluateLogic();
+    setOutputState(currentResult);
+
+    // Verify against all test cases
     setTimeout(() => {
-      const expectedOutput = level.targetOutput.every((expected, i) => {
-        const testInputs = [...inputStates];
-        if (i < testInputs.length) testInputs[i] = true;
-        return evaluateLogic() === expected;
-      });
-      
-      if (result && placedBlocks.length >= level.requiredBlocks) {
+      // Check if the circuit topology is valid first
+      // 1. Must have connection to power (implicit)
+      // 2. Must end with a COIL
+      // 3. Must have enough blocks
+
+      const sortedBlocks = [...placedBlocks].sort((a, b) => a.position - b.position);
+      const hasCoil = sortedBlocks.some(b => b.block.type === "COIL");
+      const lastIsCoil = sortedBlocks.length > 0 && sortedBlocks[sortedBlocks.length - 1].block.type === "COIL";
+
+      if (!hasCoil || !lastIsCoil) {
+        setSimulationStatus("error");
+        return;
+      }
+
+      if (placedBlocks.length < level.requiredBlocks) {
+        setSimulationStatus("error");
+        return;
+      }
+
+      // Run Truth Table verification
+      let allTestsPassed = false;
+      if (level.testCases) {
+        allTestsPassed = level.testCases.every(testCase => {
+          return evaluateCircuit(placedBlocks, testCase.inputs) === testCase.expected;
+        });
+      }
+
+      if (allTestsPassed) {
+        setSimulationStatus("success");
         setScore(prev => prev + 100);
         if (currentLevel < LEVELS.length - 1) {
           setTimeout(() => {
@@ -222,17 +340,18 @@ const PLCGame = () => {
         } else {
           setGameComplete(true);
         }
+      } else {
+        setSimulationStatus("error");
       }
-      setIsRunning(false);
     }, 1000);
   };
 
   const resetLevel = () => {
     setPlacedBlocks([]);
     setOutputState(false);
-    setIsRunning(false);
+    setSimulationStatus("idle");
     setShowHint(false);
-    setInputStates([true, true]);
+    setInputStates([false, false, false]);
   };
 
   const handleDragStart = (block: LogicBlock) => {
@@ -256,10 +375,11 @@ const PLCGame = () => {
   const removeBlock = (id: string) => {
     setPlacedBlocks(prev => prev.filter(b => b.id !== id));
     setOutputState(false);
+    setSimulationStatus("idle");
   };
 
   const toggleInput = (index: number) => {
-    if (!isRunning) {
+    if (simulationStatus !== "verifying") {
       setInputStates(prev => {
         const newStates = [...prev];
         newStates[index] = !newStates[index];
@@ -360,7 +480,7 @@ const PLCGame = () => {
                       {showHint ? "Hide Hint" : "Show Hint"}
                     </button>
                   </div>
-                  
+
                   <AnimatePresence>
                     {showHint && (
                       <motion.div
@@ -426,7 +546,7 @@ const PLCGame = () => {
                     <div className="relative bg-muted/50 rounded-lg p-6 min-h-[200px]">
                       {/* Left Power Rail */}
                       <div className="absolute left-4 top-0 bottom-0 w-1 bg-primary rounded-full" />
-                      
+
                       {/* Right Power Rail */}
                       <div className="absolute right-4 top-0 bottom-0 w-1 bg-primary rounded-full" />
 
@@ -483,14 +603,14 @@ const PLCGame = () => {
                         <button
                           key={idx}
                           onClick={() => toggleInput(idx)}
-                          disabled={isRunning}
+                          disabled={simulationStatus === "verifying"}
                           className={`
                             px-4 py-2 rounded-lg border font-medium text-sm transition-all
-                            ${state 
-                              ? "bg-primary/20 border-primary text-primary" 
+                            ${state
+                              ? "bg-primary/20 border-primary text-primary"
                               : "bg-muted border-border text-muted-foreground"
                             }
-                            ${isRunning ? "opacity-50 cursor-not-allowed" : "hover:border-primary/50"}
+                            ${simulationStatus === "verifying" ? "opacity-50 cursor-not-allowed" : "hover:border-primary/50"}
                           `}
                         >
                           Input {idx + 1}: {state ? "ON" : "OFF"}
@@ -504,8 +624,8 @@ const PLCGame = () => {
                         <span className="text-sm font-medium">Output:</span>
                         <div className={`
                           px-6 py-3 rounded-lg border-2 font-display font-bold flex items-center gap-2
-                          ${outputState 
-                            ? "bg-primary/20 border-primary text-primary" 
+                          ${outputState
+                            ? "bg-primary/20 border-primary text-primary"
                             : "bg-muted border-border text-muted-foreground"
                           }
                         `}>
@@ -526,7 +646,7 @@ const PLCGame = () => {
                       <div className="flex items-center gap-3">
                         <button
                           onClick={resetLevel}
-                          disabled={isRunning}
+                          disabled={simulationStatus === "verifying"}
                           className="px-4 py-2 rounded-lg border border-border text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors flex items-center gap-2"
                         >
                           <RotateCcw className="w-4 h-4" />
@@ -534,45 +654,52 @@ const PLCGame = () => {
                         </button>
                         <button
                           onClick={runSimulation}
-                          disabled={isRunning || placedBlocks.length < level.requiredBlocks}
+                          disabled={simulationStatus === "verifying" || placedBlocks.length < level.requiredBlocks}
                           className={`
                             px-6 py-2 rounded-lg font-semibold flex items-center gap-2 transition-all
-                            ${placedBlocks.length >= level.requiredBlocks && !isRunning
+                            ${placedBlocks.length >= level.requiredBlocks && simulationStatus !== "verifying"
                               ? "bg-primary text-primary-foreground hover:shadow-lg"
                               : "bg-muted text-muted-foreground cursor-not-allowed"
                             }
                           `}
                         >
                           <Play className="w-4 h-4" />
-                          {isRunning ? "Running..." : "Run"}
+                          {simulationStatus === "verifying" ? "Running..." : "Run"}
                         </button>
                       </div>
                     </div>
 
                     {/* Success/Failure Message */}
                     <AnimatePresence>
-                      {isRunning && (
+                      {simulationStatus !== "idle" && (
                         <motion.div
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0 }}
                           className={`
                             mt-4 p-4 rounded-lg flex items-center gap-3
-                            ${outputState 
-                              ? "bg-primary/10 border border-primary/30 text-primary" 
-                              : "bg-accent/10 border border-accent/30 text-accent"
+                            ${simulationStatus === "success"
+                              ? "bg-primary/10 border border-primary/30 text-primary"
+                              : simulationStatus === "error"
+                                ? "bg-red-500/10 border border-red-500/30 text-red-500" // Error red
+                                : "bg-accent/10 border border-accent/30 text-accent"    // Verifying (Accent)
                             }
                           `}
                         >
-                          {outputState ? (
+                          {simulationStatus === "success" ? (
                             <>
                               <CheckCircle2 className="w-6 h-6" />
                               <span className="font-medium">Logic correct! Moving to next level...</span>
                             </>
-                          ) : (
+                          ) : simulationStatus === "error" ? (
                             <>
                               <AlertTriangle className="w-6 h-6" />
-                              <span className="font-medium">Logic incomplete. Check your connections.</span>
+                              <span className="font-medium">Logic incomplete or incorrect. Check your connections.</span>
+                            </>
+                          ) : (
+                            <>
+                              <Timer className="w-6 h-6 animate-pulse" />
+                              <span className="font-medium">Verifying Logic Circuits...</span>
                             </>
                           )}
                         </motion.div>

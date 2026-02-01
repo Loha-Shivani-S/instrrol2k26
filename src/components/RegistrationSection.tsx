@@ -58,7 +58,7 @@ const RegistrationSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
@@ -73,7 +73,7 @@ const RegistrationSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="max-w-2xl mx-auto"
         >
@@ -198,11 +198,10 @@ const RegistrationSection = () => {
                     key={event}
                     type="button"
                     onClick={() => handleEventToggle(event)}
-                    className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
-                      formData.events.includes(event)
+                    className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${formData.events.includes(event)
                         ? "bg-primary text-primary-foreground"
                         : "bg-muted text-muted-foreground hover:bg-muted/80"
-                    }`}
+                      }`}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >

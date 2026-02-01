@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { User, ArrowLeft, Phone } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface Member {
@@ -25,8 +25,8 @@ const membersData: MemberGroup[] = [
   },
 
   {
-    title: "Chairman",
-    members: [{ name: "Ms. V. Janadharshini", class: "IV A", rollNo: "22EI003", phone: "+91 98765 43214", photo: null }],
+    title: "Chairwoman",
+    members: [{ name: "Ms. V. Janadharshini", class: "IV A", rollNo: "22EI003", phone: "+91 98765 43214", photo: "/images/chairwoman.png" }],
   },
   {
     title: "Vice Chairman",
@@ -37,7 +37,7 @@ const membersData: MemberGroup[] = [
   },
   {
     title: "Secretary",
-    members: [{ name: "Ms. R. Sruthi", class: "IV B", rollNo: "22EI001", phone: "+91 98765 43212", photo: null }],
+    members: [{ name: "Ms. R. Sruthi", class: "IV B", rollNo: "22EI001", phone: "+91 98765 43212", photo: "/images/sruthi.png" }],
   },
   {
     title: "Treasurer",
@@ -90,34 +90,18 @@ const isFaculty = (className: string) => {
 const MemberCard = ({ member, index }: { member: Member; index: number }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: false, amount: 0.1 }}
     transition={{ delay: index * 0.03 }}
-    className="flex flex-col items-center text-center py-6"
+    className="flex flex-col items-start text-left py-4 px-6 w-full h-full bg-secondary/30 border border-primary/10 hover:border-primary/30 rounded-lg transition-all hover:bg-secondary/50"
   >
-    <div
-      className="w-28 h-28 md:w-32 md:h-32 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 border-2 border-primary/30 flex items-center justify-center overflow-hidden mb-4"
-      style={{ boxShadow: "var(--shadow-gold-soft)" }}
-    >
-      {member.photo ? (
-        <img
-          src={member.photo}
-          alt={member.name}
-          className="w-full h-full object-cover"
-        />
-      ) : (
-        <User className="w-14 h-14 md:w-16 md:h-16 text-primary/50" />
-      )}
+    <div className="flex flex-col gap-1 w-full">
+      <h4 className="font-display font-bold text-2xl mb-1 tracking-wide text-gradient-gold">
+        {member.name}
+      </h4>
+      <p className="text-lg text-muted-foreground font-body">{member.class}</p>
+
     </div>
-    <h4 className="font-display font-bold text-foreground text-lg mb-1 tracking-wide">{member.name}</h4>
-    <p className="text-sm text-muted-foreground font-body mb-1">{member.class}</p>
-    {!isFaculty(member.class) && member.rollNo && (
-      <p className="text-sm text-primary font-display mb-1">{member.rollNo}</p>
-    )}
-    {member.phone && (
-      <p className="text-sm text-muted-foreground flex items-center gap-1 font-body">
-        <Phone size={12} /> {member.phone}
-      </p>
-    )}
   </motion.div>
 );
 
@@ -155,18 +139,15 @@ const Members = () => {
           <motion.div
             key={groupIndex}
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.1 }}
             transition={{ delay: groupIndex * 0.1 }}
             className="mb-16"
           >
-            <h2 className="font-display text-2xl font-bold text-primary mb-8 text-center flex items-center justify-center gap-3 tracking-wide">
-              <span className="w-2 h-8 rounded-full" style={{ background: "var(--gradient-gold)" }} />
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-primary mb-10 text-left flex items-center gap-4 tracking-wider py-4 px-6 bg-gradient-to-r from-primary/10 to-transparent border-l-8 border-primary rounded-r-lg shadow-sm">
               {group.title}
             </h2>
-            <div className={group.title === "Executive Members"
-              ? "grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-x-12 md:gap-y-16 justify-items-center"
-              : "flex flex-wrap justify-center gap-8 md:gap-12"
-            }>
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {group.members.map((member, memberIndex) => (
                 <MemberCard
                   key={memberIndex}
@@ -178,16 +159,7 @@ const Members = () => {
           </motion.div>
         ))}
 
-        {/* Creator Credit */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center pt-12 border-t border-border"
-        >
-          <p className="text-sm text-muted-foreground font-body">
-            Website created by <span className="text-primary font-semibold">Loha Shivani S</span>
-          </p>
-        </motion.div>
+
       </div>
     </div>
   );

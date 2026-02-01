@@ -6,7 +6,7 @@ const InstrrolBanner = () => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: false, amount: 0.1 }}
       transition={{ duration: 0.8 }}
       className="relative w-full mx-auto my-24 overflow-visible"
     >
@@ -68,7 +68,7 @@ const InstrrolBanner = () => {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.1 }}
             transition={{ delay: 0.3, duration: 0.6 }}
             className="absolute top-1/2 left-0 right-0 -translate-y-1/2 text-center"
           >

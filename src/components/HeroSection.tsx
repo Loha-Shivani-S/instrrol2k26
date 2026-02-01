@@ -1,7 +1,9 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+
 import { Calendar, ArrowDown, Cpu, Gauge, Factory, Cog, MapPin, Trophy } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import confetti from "canvas-confetti";
 
 const HeroSection = () => {
   const [countdown, setCountdown] = useState({
@@ -10,9 +12,10 @@ const HeroSection = () => {
     minutes: 0,
     seconds: 0,
   });
+  const [isEventStarted, setIsEventStarted] = useState(false);
 
   useEffect(() => {
-    const targetDate = new Date("2026-02-18T09:00:00").getTime();
+    const targetDate = new Date("2026-02-18T00:00:00").getTime();
 
     const updateCountdown = () => {
       const now = new Date().getTime();
@@ -25,6 +28,9 @@ const HeroSection = () => {
           minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
           seconds: Math.floor((distance % (1000 * 60)) / 1000),
         });
+      } else {
+        setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        setIsEventStarted(true);
       }
     };
 
@@ -32,6 +38,36 @@ const HeroSection = () => {
     const interval = setInterval(updateCountdown, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    if (isEventStarted) {
+      const duration = 3000;
+      const end = Date.now() + duration;
+
+      const frame = () => {
+        confetti({
+          particleCount: 5,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+          colors: ['#FFD700', '#FFA500', '#FF4500'] // Gold and orange theme
+        });
+        confetti({
+          particleCount: 5,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+          colors: ['#FFD700', '#FFA500', '#FF4500']
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      };
+
+      frame();
+    }
+  }, [isEventStarted]);
 
   const handleNavClick = (href: string) => {
     const element = document.querySelector(href);
@@ -41,43 +77,14 @@ const HeroSection = () => {
   };
 
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden machinery-pattern"
-    >
-      {/* Background Effects */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-20">
+
+      {/* Background Elements */}
       <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
       <div className="absolute inset-0" style={{ background: "var(--gradient-circuit)" }} />
 
       {/* Floating Technical Icons */}
-      <motion.div
-        className="absolute top-1/4 left-10 text-primary/15"
-        animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
-        transition={{ duration: 8, repeat: Infinity }}
-      >
-        <Factory size={90} />
-      </motion.div>
-      <motion.div
-        className="absolute top-1/3 right-16 text-accent/15"
-        animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }}
-        transition={{ duration: 6, repeat: Infinity, delay: 1 }}
-      >
-        <Cpu size={70} />
-      </motion.div>
-      <motion.div
-        className="absolute bottom-1/4 left-1/4 text-primary/10"
-        animate={{ y: [0, -15, 0] }}
-        transition={{ duration: 7, repeat: Infinity, delay: 2 }}
-      >
-        <Gauge size={55} />
-      </motion.div>
-      <motion.div
-        className="absolute bottom-1/3 right-1/4 text-accent/10"
-        animate={{ rotate: [0, 360] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-      >
-        <Cog size={60} />
-      </motion.div>
+
 
       <div className="container mx-auto px-6 text-center relative z-10 pt-20">
         {/* College & Department Info */}
@@ -167,9 +174,12 @@ const HeroSection = () => {
           ].map((item) => (
             <div
               key={item.label}
-              className="flex flex-col items-center p-3 md:p-4 rounded-lg bg-card/50 border border-primary/20 min-w-[60px] md:min-w-[80px]"
+              className={`flex flex-col items-center p-3 md:p-4 rounded-lg bg-card/50 border min-w-[60px] md:min-w-[80px] transition-all duration-500 ${isEventStarted
+                ? "border-primary bg-primary/20 shadow-[0_0_30px_rgba(255,215,0,0.6)] scale-110"
+                : "border-primary/20"
+                }`}
             >
-              <span className="font-display text-2xl md:text-4xl font-bold text-primary">
+              <span className={`font-display text-2xl md:text-4xl font-bold ${isEventStarted ? "text-white drop-shadow-lg" : "text-primary"}`}>
                 {String(item.value).padStart(2, "0")}
               </span>
               <span className="text-xs md:text-sm text-muted-foreground font-body">{item.label}</span>

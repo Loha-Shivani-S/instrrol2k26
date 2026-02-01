@@ -54,15 +54,15 @@
     --gradient-card: linear-gradient(145deg, hsl(222 45% 12%), hsl(222 45% 8%));
     --gradient-hero: radial-gradient(ellipse at 50% 0%, hsl(38 92% 50% / 0.08), transparent 60%);
     --gradient-circuit: radial-gradient(ellipse at 30% 20%, hsl(210 100% 40% / 0.05), transparent 40%),
-                        radial-gradient(ellipse at 70% 80%, hsl(38 92% 50% / 0.04), transparent 40%);
-    
+      radial-gradient(ellipse at 70% 80%, hsl(38 92% 50% / 0.04), transparent 40%);
+
     --shadow-gold: 0 0 30px hsl(38 92% 50% / 0.35);
     --shadow-gold-soft: 0 0 20px hsl(38 92% 50% / 0.2);
     --shadow-glow: 0 0 30px hsl(38 92% 50% / 0.35);
     --shadow-glow-accent: 0 0 30px hsl(32 95% 55% / 0.35);
     --shadow-glow-success: 0 0 20px hsl(160 70% 40% / 0.35);
     --shadow-card: 0 8px 32px hsl(222 47% 4% / 0.6);
-    
+
     /* Sidebar */
     --sidebar-background: 222 45% 10%;
     --sidebar-foreground: 210 40% 98%;
@@ -85,12 +85,18 @@
     font-family: 'Inter', sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: 'Cinzel', serif;
   }
 }
 
 @layer components {
+
   /* Gold Gradient Text */
   .text-gradient-gold {
     background: var(--gradient-gold-text);
@@ -108,7 +114,7 @@
     font-family: 'Cinzel', serif;
     letter-spacing: 0.05em;
   }
-  
+
   .btn-hero-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 0 50px hsl(38 92% 50% / 0.5);
@@ -122,7 +128,7 @@
     font-family: 'Cinzel', serif;
     letter-spacing: 0.05em;
   }
-  
+
   .btn-hero-secondary:hover {
     background: hsl(var(--primary) / 0.1);
     box-shadow: var(--shadow-gold);
@@ -134,7 +140,7 @@
     background: var(--gradient-card);
     border: 1px solid hsl(var(--border));
   }
-  
+
   .event-card:hover {
     transform: translateY(-8px);
     border-color: hsl(var(--primary));
@@ -168,7 +174,7 @@
 
   /* Circuit Pattern Background */
   .circuit-pattern {
-    background-image: 
+    background-image:
       linear-gradient(hsl(210 100% 40% / 0.03) 1px, transparent 1px),
       linear-gradient(90deg, hsl(210 100% 40% / 0.03) 1px, transparent 1px);
     background-size: 40px 40px;
@@ -216,8 +222,15 @@
   }
 
   @keyframes pulse-status {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.5;
+    }
   }
 
   /* Form Input Styles */
@@ -227,7 +240,7 @@
     border: 1px solid hsl(var(--border));
     color: hsl(var(--foreground));
   }
-  
+
   .form-input:focus {
     outline: none;
     border-color: hsl(var(--primary));
@@ -293,7 +306,7 @@
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
-  
+
   .animate-pulse-glow {
     animation: pulse-glow 2s ease-in-out infinite;
   }
@@ -304,18 +317,24 @@
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-20px);
   }
 }
 
 @keyframes pulse-glow {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 20px hsl(38 92% 50% / 0.3);
   }
+
   50% {
     box-shadow: 0 0 40px hsl(38 92% 50% / 0.6);
   }
@@ -326,6 +345,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

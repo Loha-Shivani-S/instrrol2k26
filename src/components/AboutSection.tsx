@@ -10,7 +10,7 @@ const AboutSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
           transition={{ duration: 0.6 }}
           className="max-w-4xl mx-auto text-center mb-12"
         >
@@ -21,12 +21,12 @@ const AboutSection = () => {
             Instrument Society of <span className="text-gradient-gold">India</span>
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed mb-8 font-body">
-            The Instrument Society of India (ISoI) is a premier professional body dedicated to advancing 
-            instrumentation, automation, and control systems. Our student chapter at Kongu Engineering College 
-            bridges the gap between academia and industry, fostering innovation and technical excellence in 
+            The Instrument Society of India (ISoI) is a premier professional body dedicated to advancing
+            instrumentation, automation, and control systems. Our student chapter at Kongu Engineering College
+            bridges the gap between academia and industry, fostering innovation and technical excellence in
             Electronics & Instrumentation Engineering.
           </p>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
@@ -49,7 +49,7 @@ const AboutSection = () => {
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.1 }}
                 transition={{ delay: index * 0.1 }}
                 className="event-card text-center"
               >
@@ -70,7 +70,7 @@ const AboutSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
           transition={{ duration: 0.6 }}
           className="max-w-4xl mx-auto"
         >
@@ -82,8 +82,8 @@ const AboutSection = () => {
               What is <span className="text-gradient-gold">INSTRROL 2K26</span>?
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed font-body">
-              INSTRROL is the flagship department-level technical event organized by ISoI, exclusively 
-              for students of Electronics & Instrumentation Engineering. It's a platform where innovation 
+              INSTRROL is the flagship department-level technical event organized by ISoI, exclusively
+              for students of Electronics & Instrumentation Engineering. It's a platform where innovation
               meets competition, designed to test practical knowledge, teamwork, and problem-solving abilities.
             </p>
           </div>
@@ -98,7 +98,7 @@ const AboutSection = () => {
                 key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.1 }}
                 transition={{ delay: index * 0.1 }}
                 className="text-center p-6 rounded-xl bg-card/50 border border-primary/20"
               >

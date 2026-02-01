@@ -7,30 +7,31 @@ const facultyAdvisors = [
     name: "Dr. T. Mrunalini M.E., Ph.D",
     designation: "AP (SrG)",
     role: "Faculty Advisor",
-    phone: "+91 98765 43210",
-    photo: null,
+    phone: "9865581285",
+    photo: "/images/mrunalini.png",
   },
   {
     name: "Ms. S. Anitha M.E.",
     designation: "AP",
     role: "Faculty Advisor",
-    phone: "+91 98765 43211",
-    photo: null,
+    phone: "8072099510",
+    photo: "/images/anitha.png",
+    scale: 1.35,
   },
 ];
 
 const overallCoordinators = [
   {
     name: "Sruthi R",
-    rollNo: "22EI001",
-    phone: "+91 97501 49999",
-    photo: null,
+    rollNo: "22EIR091",
+    phone: "9750149999",
+    photo: "/images/sruthi.png",
   },
   {
     name: "Harshini V",
-    rollNo: "23EI002",
-    phone: "+91 99944 41632",
-    photo: null,
+    rollNo: "23EIR040",
+    phone: "9994441632",
+    photo: "/images/harshini.png",
   },
 ];
 
@@ -41,7 +42,7 @@ const FacultySection = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
@@ -54,18 +55,21 @@ const FacultySection = () => {
         </motion.div>
 
         {/* Faculty Advisors */}
-        <div className="flex flex-wrap justify-center gap-12 md:gap-16 mb-16">
-          {facultyAdvisors.map((faculty, index) => (
+        <h3 className="font-decorative text-2xl italic text-primary mb-8 text-center">
+          Faculty Advisors
+        </h3>
+        <div className="flex flex-wrap justify-center gap-12 md:gap-20 mb-16">
+          {facultyAdvisors.map((faculty: any, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.1 }}
               transition={{ delay: index * 0.1 }}
               className="text-center"
             >
               <motion.div
-                className="w-40 h-40 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 border-2 border-primary/30 flex items-center justify-center mx-auto mb-6 overflow-hidden"
+                className="w-56 h-56 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 border-2 border-primary/30 flex items-center justify-center mx-auto mb-6 overflow-hidden"
                 whileHover={{ scale: 1.05 }}
                 style={{ boxShadow: "var(--shadow-gold-soft)" }}
               >
@@ -74,32 +78,78 @@ const FacultySection = () => {
                     src={faculty.photo}
                     alt={faculty.name}
                     className="w-full h-full object-cover"
+                    style={{ transform: faculty.scale ? `scale(${faculty.scale})` : "none" }}
                   />
                 ) : (
-                  <User className="w-20 h-20 md:w-24 md:h-24 text-primary/50" />
+                  <User className="w-28 h-28 md:w-32 md:h-32 text-primary/50" />
                 )}
               </motion.div>
-              <h3 className="font-display text-xl font-bold text-foreground mb-1 tracking-wide">
+              <h3 className="font-display text-3xl font-bold text-foreground mb-2 tracking-wide">
                 {faculty.name}
               </h3>
-              <p className="text-primary text-base font-display mb-1">
+              <p className="text-primary text-xl font-display mb-1">
                 {faculty.role}
               </p>
-              <p className="text-muted-foreground text-sm font-body mb-1">
+              <p className="text-muted-foreground text-lg font-body mb-1">
                 {faculty.designation}
               </p>
-              <p className="text-muted-foreground text-sm flex items-center justify-center gap-1 font-body">
-                <Phone size={14} /> {faculty.phone}
+              <p className="text-muted-foreground text-base flex items-center justify-center gap-1 font-body">
+                <Phone size={16} /> {faculty.phone}
               </p>
             </motion.div>
           ))}
         </div>
 
+        {/* Chairwoman */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.1 }}
+          className="text-center mb-16"
+        >
+          <h3 className="font-decorative text-2xl italic text-primary mb-8">
+            Chairwoman
+          </h3>
+          <div className="flex justify-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.1 }}
+              className="text-center"
+            >
+              <motion.div
+                className="w-56 h-56 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-accent/20 to-primary/20 border-2 border-accent/30 flex items-center justify-center mx-auto mb-5 overflow-hidden"
+                whileHover={{ scale: 1.05 }}
+                style={{ boxShadow: "var(--shadow-glow-accent)" }}
+              >
+                {/* Chairwoman Image */}
+                <img
+                  src="/images/chairwoman.png"
+                  alt="Ms. V. Janadharshini"
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+              <h4 className="font-display text-3xl font-bold text-foreground mb-2 tracking-wide">
+                Ms. V. Janadharshini
+              </h4>
+              <p className="text-accent text-xl font-display mb-1">
+                Chairwoman
+              </p>
+              <p className="text-muted-foreground text-lg font-body mb-1">
+                22EIR031
+              </p>
+              <p className="text-muted-foreground text-base flex items-center justify-center gap-1 font-body">
+                <Phone size={16} /> 9944556955
+              </p>
+            </motion.div>
+          </div>
+        </motion.div>
+
         {/* Overall Coordinators */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
           className="text-center mb-12"
         >
           <h3 className="font-decorative text-2xl italic text-primary mb-8">
@@ -111,12 +161,12 @@ const FacultySection = () => {
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.1 }}
                 transition={{ delay: index * 0.1 }}
                 className="text-center"
               >
                 <motion.div
-                  className="w-36 h-36 md:w-44 md:h-44 rounded-full bg-gradient-to-br from-accent/20 to-primary/20 border-2 border-accent/30 flex items-center justify-center mx-auto mb-5 overflow-hidden"
+                  className="w-56 h-56 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-accent/20 to-primary/20 border-2 border-accent/30 flex items-center justify-center mx-auto mb-5 overflow-hidden"
                   whileHover={{ scale: 1.05 }}
                   style={{ boxShadow: "var(--shadow-glow-accent)" }}
                 >
@@ -127,34 +177,55 @@ const FacultySection = () => {
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    <User className="w-16 h-16 md:w-20 md:h-20 text-accent/50" />
+                    <User className="w-28 h-28 md:w-32 md:h-32 text-accent/50" />
                   )}
                 </motion.div>
-                <h4 className="font-display text-lg font-bold text-foreground mb-1 tracking-wide">
+                <h4 className="font-display text-3xl font-bold text-foreground mb-2 tracking-wide">
                   {coordinator.name}
                 </h4>
-                <p className="text-accent text-sm font-display mb-1">
+                <p className="text-accent text-xl font-display mb-1">
                   Overall Coordinator
                 </p>
-                <p className="text-muted-foreground text-sm font-body mb-1">
+                <p className="text-muted-foreground text-lg font-body mb-1">
                   {coordinator.rollNo}
                 </p>
-                <p className="text-muted-foreground text-sm flex items-center justify-center gap-1 font-body">
-                  <Phone size={14} /> {coordinator.phone}
+                <p className="text-muted-foreground text-base flex items-center justify-center gap-1 font-body">
+                  <Phone size={16} /> {coordinator.phone}
                 </p>
               </motion.div>
             ))}
           </div>
         </motion.div>
 
-        {/* View All Members Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center"
+          viewport={{ once: false, amount: 0.1 }}
+          className="flex flex-col sm:flex-row justify-center gap-6"
         >
-          <Link 
+          <Link
+            to="/coordinators"
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href = "/coordinators";
+            }}
+          >
+            <motion.button
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-display text-lg tracking-wide w-full sm:w-auto justify-center"
+              style={{
+                background: "var(--gradient-gold)",
+                color: "hsl(var(--primary-foreground))",
+                boxShadow: "var(--shadow-gold)",
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Coordinators
+              <ArrowRight size={20} />
+            </motion.button>
+          </Link>
+
+          <Link
             to="/members"
             onClick={(e) => {
               e.preventDefault();
@@ -162,13 +233,8 @@ const FacultySection = () => {
             }}
           >
             <motion.button
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-display text-lg tracking-wide"
-              style={{
-                background: "var(--gradient-gold)",
-                color: "hsl(var(--primary-foreground))",
-                boxShadow: "var(--shadow-gold)",
-              }}
-              whileHover={{ scale: 1.05, gap: "16px" }}
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-display text-lg tracking-wide w-full sm:w-auto justify-center border-2 border-primary/50 text-primary hover:bg-primary/10 transition-colors"
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               View All Members

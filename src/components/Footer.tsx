@@ -10,13 +10,13 @@ const Footer = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.1 }}
           >
             <h3 className="font-display text-3xl font-bold mb-4 tracking-wider">
               <span className="text-gradient-gold">INSTRROL</span>
             </h3>
             <p className="text-muted-foreground mb-4 font-body">
-              Department Technical Event organized by ISoI Students' Chapter, 
+              Department Technical Event organized by ISoI Students' Chapter,
               Department of Electronics & Instrumentation Engineering.
             </p>
             <div className="flex items-center gap-2 text-primary">
@@ -29,7 +29,7 @@ const Footer = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.1 }}
             transition={{ delay: 0.1 }}
           >
             <h4 className="font-display text-lg font-semibold mb-4 tracking-wide">Quick Links</h4>
@@ -57,7 +57,7 @@ const Footer = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.1 }}
             transition={{ delay: 0.2 }}
           >
             <h4 className="font-display text-lg font-semibold mb-4 tracking-wide">Contact Us</h4>
@@ -65,8 +65,8 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-primary mt-0.5" />
                 <div>
-                  <p className="text-foreground font-medium font-display">C K Prahalad Seminar Hall</p>
-                  <p className="text-sm text-muted-foreground font-body">MBA Block, KEC, Perundurai</p>
+                  <p className="text-foreground font-medium font-display">EIE Block</p>
+                  <p className="text-sm text-muted-foreground font-body">Kongu Engineering College</p>
                 </div>
               </li>
               <li className="flex items-center gap-3">
@@ -96,7 +96,7 @@ const Footer = () => {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
           className="pt-8 border-t border-border text-center space-y-2"
         >
           <p className="text-sm text-muted-foreground font-body">
