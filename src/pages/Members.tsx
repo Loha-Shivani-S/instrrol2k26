@@ -26,7 +26,7 @@ const membersData: MemberGroup[] = [
 
   {
     title: "Chairwoman",
-    members: [{ name: "Ms. V. Janadharshini", class: "IV A", rollNo: "22EI003", phone: "+91 98765 43214", photo: "/images/chairwoman.png" }],
+    members: [{ name: "Ms. V. Janadharshini", class: "IV A", rollNo: "22EI003", phone: "+91 98765 43214", photo: "/instrrol2k26/images/chairwoman.png" }],
   },
   {
     title: "Vice Chairman",
@@ -37,7 +37,7 @@ const membersData: MemberGroup[] = [
   },
   {
     title: "Secretary",
-    members: [{ name: "Ms. R. Sruthi", class: "IV B", rollNo: "22EI001", phone: "+91 98765 43212", photo: "/images/sruthi.png" }],
+    members: [{ name: "Ms. R. Sruthi", class: "IV B", rollNo: "22EI001", phone: "+91 98765 43212", photo: "/instrrol2k26/images/sruthi.png" }],
   },
   {
     title: "Treasurer",
