@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { getAssetPath } from "@/lib/utils";
 import { User, ArrowRight, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -8,14 +9,14 @@ const facultyAdvisors = [
     designation: "AP (SrG)",
     role: "Faculty Advisor",
     phone: "9865581285",
-    photo: "/instrrol2k26/images/mrunalini.png",
+    photo: getAssetPath("/images/mrunalini.png"),
   },
   {
     name: "Ms. S. Anitha M.E.",
     designation: "AP",
     role: "Faculty Advisor",
     phone: "8072099510",
-    photo: "/instrrol2k26/images/anitha.png",
+    photo: getAssetPath("/images/anitha.png"),
     scale: 1.35,
   },
 ];
@@ -25,13 +26,13 @@ const overallCoordinators = [
     name: "Sruthi R",
     rollNo: "22EIR091",
     phone: "9750149999",
-    photo: "/instrrol2k26/images/sruthi.png",
+    photo: getAssetPath("/images/sruthi.png"),
   },
   {
     name: "Harshini V",
     rollNo: "23EIR040",
     phone: "9994441632",
-    photo: "/instrrol2k26/images/harshini.png",
+    photo: getAssetPath("/images/harshini.png"),
   },
 ];
 
@@ -124,7 +125,7 @@ const FacultySection = () => {
               >
                 {/* Chairwoman Image */}
                 <img
-                  src="/instrrol2k26/images/chairwoman.png"
+                  src={getAssetPath("/images/chairwoman.png")}
                   alt="Ms. V. Janadharshini"
                   className="w-full h-full object-cover"
                 />
