@@ -351,10 +351,10 @@
   }
 }
 
-/* Smooth Scrolling */
-html {
+/* Smooth Scrolling - REVERTED for instant page listing */
+/* html {
   scroll-behavior: smooth;
-}
+} */
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
