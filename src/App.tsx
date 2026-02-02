@@ -10,7 +10,7 @@ import SmartFactory from "./pages/SmartFactory";
 import Members from "./pages/Members";
 import Coordinators from "./pages/Coordinators";
 
-import ScrollToTop from "@/components/ScrollToTop";
+
 
 const queryClient = new QueryClient();
 
@@ -20,7 +20,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter basename="/instrrol2k26">
-        <ScrollToTop />
+
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/plc-game" element={<PLCGame />} />
