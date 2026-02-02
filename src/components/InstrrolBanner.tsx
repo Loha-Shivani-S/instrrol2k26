@@ -22,7 +22,7 @@ const InstrrolBanner = () => {
         />
 
         {/* Banner image with gradients */}
-        <div className="relative aspect-[21/9] overflow-hidden">
+        <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden">
           <img
             src={instrrolBanner}
             alt="INSTRROL 2K26 Banner"
@@ -73,7 +73,7 @@ const InstrrolBanner = () => {
             className="absolute top-1/2 left-0 right-0 -translate-y-1/2 text-center"
           >
             <h2
-              className="font-display text-5xl md:text-7xl lg:text-8xl font-black tracking-wider text-gradient-gold"
+              className="font-display text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-wider text-gradient-gold"
               style={{
                 textShadow: '0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(245, 158, 11, 0.3)',
                 filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.5))'

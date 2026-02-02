@@ -237,17 +237,48 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-wrap justify-center gap-4 md:gap-8 mb-16"
+          className="mb-16"
         >
-          <div className="flex items-center gap-2 text-foreground/70">
-            <MapPin size={18} className="text-primary" />
-            <span className="text-sm font-body">C K Prahalad Seminar Hall, MBA Block</span>
-          </div>
-          <div className="flex items-center gap-2 text-foreground/70">
-            <Trophy size={18} className="text-accent" />
-            <span className="text-sm font-body">Win Exciting Prizes</span>
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+            <div className="flex items-center gap-2 text-foreground/70">
+              <MapPin size={18} className="text-primary" />
+              <span className="text-sm font-body">C K Prahalad Seminar Hall, MBA Block</span>
+            </div>
           </div>
         </motion.div>
+
+        {/* Legacy Awards Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.65 }}
+          className="mb-16"
+        >
+          <div className="glass p-6 md:p-8 rounded-2xl border border-primary/20 max-w-4xl mx-auto">
+            <h3 className="font-display text-2xl md:text-3xl font-bold text-gradient-gold mb-3 tracking-wide">
+              More Than Awards. It’s a Legacy.
+            </h3>
+            <p className="text-muted-foreground font-body text-base md:text-lg mb-6">
+              Recognizing individuality, confidence, and teamwork through our iconic titles:
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+              {[
+                "👑 Mr. EIE",
+                "👑 Ms. EIE",
+                "🏆 Best Crew Award"
+              ].map((award, index) => (
+                <div
+                  key={index}
+                  className="px-6 py-3 rounded-full bg-primary/10 border border-primary/30 text-primary font-display font-bold tracking-wide text-lg md:text-xl shadow-sm hover:scale-105 transition-transform"
+                >
+                  {award}
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+
 
         {/* Scroll Indicator */}
         <motion.div
@@ -265,8 +296,8 @@ const HeroSection = () => {
             <ArrowDown size={24} />
           </motion.div>
         </motion.div>
-      </div>
-    </section>
+      </div >
+    </section >
   );
 };
 

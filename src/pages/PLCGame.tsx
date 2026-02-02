@@ -619,8 +619,8 @@ const PLCGame = () => {
                     </div>
 
                     {/* Output Display */}
-                    <div className="mt-6 flex items-center justify-between">
-                      <div className="flex items-center gap-4">
+                    <div className="mt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                      <div className="flex items-center gap-4 w-full md:w-auto justify-between md:justify-start">
                         <span className="text-sm font-medium">Output:</span>
                         <div className={`
                           px-6 py-3 rounded-lg border-2 font-display font-bold flex items-center gap-2

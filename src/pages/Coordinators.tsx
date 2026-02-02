@@ -30,7 +30,7 @@ const membersData: MemberGroup[] = [
     {
         title: "Algorithm Telephone",
         members: [
-            { name: "Ms. V. Janadharshini", class: "IV Year", rollNo: "22EI003", phone: "+91 98765 43214", photo: "/instrrol2k26/images/chairwoman.png" },
+            { name: "Ms. V. Janadharshini", class: "IV Year", rollNo: "22EI003", phone: "+91 6374541593", photo: "/instrrol2k26/images/chairwoman.png" },
             { name: "Dhanusri P", class: "III Year", rollNo: "23EIR022", phone: "+91 6374439295", photo: "/instrrol2k26/images/dhanusri.png" },
             { name: "Lohashivani S", class: "II Year", rollNo: "24EIR055", phone: "+91 8270650379", photo: "/instrrol2k26/images/lohashivani.png", objectPosition: "50% 35%" },
             { name: "Hariharan S", class: "II Year", rollNo: "24EIR037", phone: "+91 7402799516", photo: "/instrrol2k26/images/hariharan.png" },
@@ -95,7 +95,7 @@ const membersData: MemberGroup[] = [
         members: [
             { name: "Yogapriya B", class: "IV Year", rollNo: "22EIR108", phone: "+91 9751930742", photo: "/instrrol2k26/images/yogapriya.png" },
             { name: "Gopika M", class: "III Year", rollNo: "23EIR032", phone: "+91 7010590477", photo: "/instrrol2k26/images/gopika.png" },
-            { name: "Aakash K", class: "II Year", rollNo: "24EIR002", phone: "+91 9342534009", photo: "/images/aakash.png" },
+            { name: "Aakash K", class: "II Year", rollNo: "24EIR002", phone: "+91 9342534009", photo: "/instrrol2k26/images/aakash.png" },
             { name: "Sivapriya T", class: "II Year", rollNo: "24EIR096", phone: "+91 9715011770", photo: "/instrrol2k26/images/sivapriya.png" },
         ],
     },
@@ -120,10 +120,10 @@ const MemberCard = ({ member, index }: { member: Member; index: number }) => (
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.1 }}
         transition={{ delay: index * 0.03 }}
-        className="flex flex-col items-center text-center py-8 px-4"
+        className="flex flex-col items-center text-center py-4 px-2 md:py-8 md:px-4"
     >
         <div
-            className="w-36 h-36 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 border-2 border-primary/30 flex items-center justify-center overflow-hidden mb-6"
+            className="w-28 h-28 sm:w-36 sm:h-36 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 border-2 border-primary/30 flex items-center justify-center overflow-hidden mb-3 md:mb-6"
             style={{ boxShadow: "var(--shadow-gold-soft)" }}
         >
             {member.photo ? (
@@ -134,11 +134,11 @@ const MemberCard = ({ member, index }: { member: Member; index: number }) => (
                     style={{ objectPosition: member.objectPosition || "center" }}
                 />
             ) : (
-                <User className="w-16 h-16 md:w-24 md:h-24 text-primary/50" />
+                <User className="w-14 h-14 sm:w-16 sm:h-16 md:w-24 md:h-24 text-primary/50" />
             )}
         </div>
-        <h4 className="font-display font-bold text-foreground text-2xl md:text-3xl mb-2 tracking-wide">{member.name}</h4>
-        <p className="text-lg text-muted-foreground font-body mb-1">{member.class}</p>
+        <h4 className="font-display font-bold text-foreground text-lg sm:text-2xl md:text-3xl mb-1 md:mb-2 tracking-wide break-words w-full">{member.name}</h4>
+        <p className="text-sm sm:text-lg text-muted-foreground font-body mb-1">{member.class}</p>
         {!isFaculty(member.class) && member.rollNo && (
             <p className="text-lg text-primary font-display mb-1">{member.rollNo}</p>
         )}
@@ -193,7 +193,7 @@ const Coordinators = () => {
                         <h2 className="font-display text-3xl md:text-4xl font-bold text-primary mb-16 text-left flex items-center gap-4 tracking-wider py-4 px-6 bg-gradient-to-r from-primary/10 to-transparent border-l-8 border-primary rounded-r-lg shadow-sm">
                             {group.title}
                         </h2>
-                        <div className="flex flex-wrap justify-center gap-16 md:gap-24">
+                        <div className="grid grid-cols-2 gap-4 md:flex md:flex-wrap md:justify-center md:gap-24">
                             {group.members.map((member, memberIndex) => (
                                 <MemberCard
                                     key={memberIndex}

@@ -26,7 +26,7 @@ const membersData: MemberGroup[] = [
 
   {
     title: "Chairwoman",
-    members: [{ name: "Ms. V. Janadharshini", class: "IV A", rollNo: "22EI003", phone: "+91 98765 43214", photo: "/instrrol2k26/images/chairwoman.png" }],
+    members: [{ name: "Ms. V. Janadharshini", class: "IV A", rollNo: "22EI003", phone: "+91 6374541593", photo: "/instrrol2k26/images/chairwoman.png" }],
   },
   {
     title: "Vice Chairman",

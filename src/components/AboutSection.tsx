@@ -91,7 +91,7 @@ const AboutSection = () => {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {[
               { icon: "🧠", value: "10+", label: "Technical Events" },
-              { icon: "👥", value: "EIE", label: "Students Only" },
+              { icon: "👥", value: "ISoI", label: "ISoI Members Only" },
               { icon: "📍", value: "KEC", label: "Venue" },
             ].map((stat, index) => (
               <motion.div

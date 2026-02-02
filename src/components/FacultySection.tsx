@@ -139,7 +139,7 @@ const FacultySection = () => {
                 22EIR031
               </p>
               <p className="text-muted-foreground text-base flex items-center justify-center gap-1 font-body">
-                <Phone size={16} /> 9944556955
+                <Phone size={16} /> 6374541593
               </p>
             </motion.div>
           </div>
