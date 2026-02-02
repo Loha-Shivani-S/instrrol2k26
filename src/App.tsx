@@ -17,7 +17,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename="/instrrol2k26">
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/plc-game" element={<PLCGame />} />
