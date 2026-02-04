@@ -67,7 +67,7 @@ const technicalEvents = [
 const creativeEvents = [
   {
     icon: BrainIcon,
-    name: "Brain Buzz",
+    name: "EyeQ",
     description: "Spot what doesn’t belong in the pattern. Connect the clues logically from start to finish. Think fast, reason smart, and trust your instincts.",
     teamSize: "3-4 members",
     duration: "30 mins",

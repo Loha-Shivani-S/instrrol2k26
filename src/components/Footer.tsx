@@ -38,9 +38,9 @@ const Footer = () => {
                 { href: "#home", label: "Home" },
                 { href: "#timeline", label: "Timeline" },
                 { href: "#events", label: "Events" },
-                { href: "#register", label: "Register" },
+                { href: "#events", label: "Register" },
               ].map((link) => (
-                <li key={link.href}>
+                <li key={link.label}>
                   <a
                     href={link.href}
                     className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 font-body"

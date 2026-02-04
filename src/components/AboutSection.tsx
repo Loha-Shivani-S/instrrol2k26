@@ -88,28 +88,7 @@ const AboutSection = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {[
-              { icon: "🧠", value: "10+", label: "Technical Events" },
-              { icon: "👥", value: "ISoI", label: "ISoI Members Only" },
-              { icon: "📍", value: "KEC", label: "Venue" },
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: false, amount: 0.1 }}
-                transition={{ delay: index * 0.1 }}
-                className="text-center p-6 rounded-xl bg-card/50 border border-primary/20"
-              >
-                <span className="text-3xl mb-2 block">{stat.icon}</span>
-                <span className="font-display text-3xl font-bold text-primary block mb-1">
-                  {stat.value}
-                </span>
-                <span className="text-sm text-muted-foreground font-body">{stat.label}</span>
-              </motion.div>
-            ))}
-          </div>
+
         </motion.div>
       </div>
     </section>

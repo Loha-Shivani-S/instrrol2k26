@@ -148,7 +148,7 @@ const Members = () => {
             <h2 className="font-display text-3xl md:text-4xl font-bold text-primary mb-10 text-left flex items-center gap-4 tracking-wider py-4 px-6 bg-gradient-to-r from-primary/10 to-transparent border-l-8 border-primary rounded-r-lg shadow-sm">
               {group.title}
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {group.members.map((member, memberIndex) => (
                 <MemberCard
                   key={memberIndex}

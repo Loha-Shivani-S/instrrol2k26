@@ -65,7 +65,7 @@ const membersData: MemberGroup[] = [
         ],
     },
     {
-        title: "Brain Buzz",
+        title: "EyeQ",
         members: [
             { name: "Vishalini A N", class: "IV Year", rollNo: "22EIR104", phone: "+91 9042901674", photo: getAssetPath("/images/vishalini.png") },
             { name: "Nihitha G", class: "III Year", rollNo: "23EIR068", phone: "+91 6382446405", photo: getAssetPath("/images/nihitha.png") },

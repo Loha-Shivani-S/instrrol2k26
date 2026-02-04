@@ -77,7 +77,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-20">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-20">
 
       {/* Background Elements */}
       <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />

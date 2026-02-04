@@ -33,7 +33,7 @@ const timelineEvents = [
   {
     time: "08:45 AM - 10:45 AM",
     title: "Visionary Boards",
-    description: "Convert your paper/project into creative posters!",
+    description: "",
     panel: null,
     icon: Sparkles,
     color: "primary",
@@ -41,7 +41,7 @@ const timelineEvents = [
   {
     time: "08:45 AM - 10:45 AM",
     title: "Algorithm Telephone",
-    description: "Listen carefully. Plan precisely. Code efficiently. Make every step count.",
+    description: "",
     panel: null,
     icon: MessageCircle,
     color: "primary",
@@ -49,7 +49,7 @@ const timelineEvents = [
   {
     time: "08:45 AM - 10:45 AM",
     title: "Idea Canvas",
-    description: "Innovative ideas to solve real-world problems.",
+    description: "",
     panel: null,
     icon: Lightbulb,
     color: "primary",
@@ -65,7 +65,7 @@ const timelineEvents = [
   {
     time: "11:00 AM - 11:30 AM",
     title: "Think On Demand",
-    description: "Make a prompt image with AI",
+    description: "",
     panel: null,
     icon: Zap,
     color: "primary",
@@ -73,7 +73,7 @@ const timelineEvents = [
   {
     time: "11:30 AM - 12:30 PM",
     title: "Zero State",
-    description: "The team assembles and connects the circuit correctly.",
+    description: "",
     panel: null,
     icon: Zap,
     color: "primary",
@@ -88,8 +88,8 @@ const timelineEvents = [
   },
   {
     time: "01:30 PM - 02:00 PM",
-    title: "Brain Buzz",
-    description: "Connect the dots logically from the starting point to the ending point.",
+    title: "EyeQ",
+    description: "",
     panel: null,
     icon: Brain,
     color: "primary",
@@ -97,7 +97,7 @@ const timelineEvents = [
   {
     time: "02:00 PM - 02:30 PM",
     title: "Pitch the Product",
-    description: "Pitch the Product is an individual-based fun and creative competition.",
+    description: "",
     panel: null,
     icon: Megaphone,
     color: "primary",
@@ -113,7 +113,7 @@ const timelineEvents = [
   {
     time: "02:30 PM - 02:45 PM",
     title: "Ad & Meme",
-    description: "AD & Meme challenges participants to creatively present technical concepts through clear, original, and impactful visuals.",
+    description: "",
     panel: null,
     icon: Image,
     color: "primary",
@@ -121,7 +121,7 @@ const timelineEvents = [
   {
     time: "02:45 PM - 03:15 PM",
     title: "Fix It / Fake It",
-    description: "Sharpen your fundamentals, react fast, and enjoy learning through fun challenges.",
+    description: "",
     panel: null,
     icon: Wrench,
     color: "primary",
@@ -129,7 +129,7 @@ const timelineEvents = [
   {
     time: "03:15 PM - 03:45 PM",
     title: "Mind Flayer",
-    description: "Think fast. Switch smart. Let your mind flare.",
+    description: "",
     panel: null,
     icon: Skull,
     color: "primary",
@@ -137,7 +137,7 @@ const timelineEvents = [
   {
     time: "03:45 PM - 04:15 PM",
     title: "Valedictory & Prize Distribution",
-    description: "Closing ceremony & Awards",
+    description: "",
     panel: null,
     icon: Trophy,
     color: "accent",

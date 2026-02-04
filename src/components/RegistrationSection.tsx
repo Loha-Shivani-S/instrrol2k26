@@ -8,7 +8,7 @@ const events = [
   "Idea Canvas",
   "Think On Demand",
   "Zero State",
-  "Brain Buzz",
+  "EyeQ",
   "Pitch the Product",
   "Fix It / Fake It",
   "Mindflayer",
@@ -199,8 +199,8 @@ const RegistrationSection = () => {
                     type="button"
                     onClick={() => handleEventToggle(event)}
                     className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${formData.events.includes(event)
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-muted text-muted-foreground hover:bg-muted/80"
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted text-muted-foreground hover:bg-muted/80"
                       }`}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}

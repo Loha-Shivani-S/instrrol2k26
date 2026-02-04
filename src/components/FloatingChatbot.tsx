@@ -46,7 +46,7 @@ const faqResponses: { keywords: string[]; response: string; matchThreshold?: num
   },
   {
     keywords: ["event", "events", "list", "schedule", "program", "competitions", "games"],
-    response: "We have a mix of Technical and Fun events! \n\nTechnical: Visionary Boards, Algorithm Telephone, Idea Canvas, Think On Demand.\n\nFun: Brain Buzz, Pitch the Product, Ad & Meme, Mindflayer.\n\nCheck the Events section for full details!",
+    response: "We have a mix of Technical and Fun events! \n\nTechnical: Visionary Boards, Algorithm Telephone, Idea Canvas, Think On Demand.\n\nFun: EyeQ, Pitch the Product, Ad & Meme, Mindflayer.\n\nCheck the Events section for full details!",
   },
   {
     keywords: ["date", "when", "time", "timing", "schedule", "duration"],
