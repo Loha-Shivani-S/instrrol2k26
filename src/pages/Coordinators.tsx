@@ -49,7 +49,7 @@ const membersData: MemberGroup[] = [
     {
         title: "Think On Demand",
         members: [
-            { name: "Sruthi R", class: "IV Year", rollNo: "23EIR081", phone: "+91 6374448662", photo: getAssetPath("/images/sruthi.png") },
+            { name: "Sruthi R", class: "IV Year", rollNo: "22EIR081", phone: "+91 6374448662", photo: getAssetPath("/images/sruthi.png") },
             { name: "Rohit Ganapathi S", class: "III Year", rollNo: "23EIR081", phone: "+91 6374448662", photo: getAssetPath("/images/rohit.png") },
             { name: "Vijay Prakash T A", class: "II Year", rollNo: "24EIR116", phone: "+91 9363984945", photo: getAssetPath("/images/vijay.jpg") },
             { name: "Chandresh P", class: "II Year", rollNo: "24EIR016", phone: "+91 8072347397", photo: getAssetPath("/images/chandresh.png") },
@@ -103,8 +103,8 @@ const membersData: MemberGroup[] = [
     {
         title: "AD & MEME",
         members: [
-            { name: "Sruthi R", class: "IV Year", rollNo: "23EIR081", phone: "+91 6374448662", photo: getAssetPath("/images/sruthi.png") },
-            { name: "Harshini Velmurugan", class: "III Year", rollNo: "23EI002", phone: "+91 9994441632", photo: getAssetPath("/images/harshini.png") },
+            { name: "Sruthi R", class: "IV Year", rollNo: "22EIR081", phone: "+91 6374448662", photo: getAssetPath("/images/sruthi.png") },
+            { name: "Harshini Velmurugan", class: "III Year", rollNo: "23EIR040", phone: "+91 9994441632", photo: getAssetPath("/images/harshini.png") },
             { name: "Veena K", class: "III Year", rollNo: "23EIR115", phone: "+91 6369669948", photo: getAssetPath("/images/veena_new.png") },
             { name: "Vijay Prakash T A", class: "II Year", rollNo: "24EIR116", phone: "+91 9363984945", photo: getAssetPath("/images/vijay.jpg") },
         ],
